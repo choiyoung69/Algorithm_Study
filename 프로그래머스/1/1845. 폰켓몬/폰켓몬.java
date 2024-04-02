@@ -2,18 +2,17 @@ import java.util.HashMap;
 
 class Solution {  
     public int solution(int[] nums) {
-        int answer = 0;
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         
-        HashMap<Integer, Integer> typeHash = new HashMap<Integer, Integer>();
-        
-        for(int i = 0; i < nums.length; i++){
-            typeHash.put(nums[i],  0);
+        for(int i : nums){
+            if(map.containsKey(i)){
+                int count = map.get(i);
+                map.put(i, ++count);
+            } 
+            else map.put(i, 1);
         }
         
-        answer = typeHash.size();
-        if(answer >= nums.length/2){
-            answer = nums.length/2;
-        }
-        return answer;
+        if(map.size() > nums.length/2) return nums.length/2;
+        else return map.size();
     }
 }
