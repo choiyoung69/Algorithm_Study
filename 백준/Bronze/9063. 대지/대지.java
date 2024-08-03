@@ -9,18 +9,22 @@ class Main{
         int N = Integer.parseInt(br.readLine());
         String[] line;
 
-        List<Integer> x = new ArrayList<>();
-        List<Integer> y = new ArrayList<>();
+        int[] x = new int[N];
+        int[] y = new int[N];
+
         int result = 0;
 
         for(int i = 0; i < N; i++){
             line = br.readLine().split(" ");
 
-            x.add(Integer.parseInt(line[0]));
-            y.add(Integer.parseInt(line[1]));
+            x[i] = (Integer.parseInt(line[0]));
+            y[i] = (Integer.parseInt(line[1]));
         }
 
-        result = (Collections.max(x) - Collections.min(x)) * (Collections.max(y) - Collections.min(y));
+        Arrays.sort(x);
+        Arrays.sort(y);
+
+        result = (x[N - 1] - x[0]) * (y[N - 1] - y[0]);
 
         System.out.println(result);
     }
