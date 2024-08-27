@@ -7,22 +7,24 @@ class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        int N_len = str.length();
+        int N = Integer.parseInt(str);
 
-        int sum = 0;
         int answer = 0;
+        int sum = 0;
         int divi;
 
-        for(int i = 1; i < N; i++){
-            sum = i;
+        for(int i = N - 9 * N_len; i < N; i++){
+            sum = 0;
             divi = i;
-            String str = Integer.toString(i);
 
-            for(int j = str.length() - 1; j >= 0; j--){
-                sum += (int)(divi / Math.pow(10, j));
-                divi = (int)(divi % Math.pow(10, j));
+            while(divi != 0){
+                sum += divi % 10;
+                divi /= 10;
             }
-            if(sum == N) {
+
+            if(sum + i == N) {
                 answer = i;
                 break;
             }
