@@ -6,25 +6,29 @@ import java.util.*;
 class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder[] p = new StringBuilder[201];
         StringBuilder sb = new StringBuilder();
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        String[][] arr = new String[N][2];
+
+        for(int i = 0; i < 201; i ++){
+            p[i] = new StringBuilder();
+        }
+
+        int age;
+        String name;
         for(int i = 0; i < N; i++){
             st = new StringTokenizer(br.readLine());
-            arr[i][0] = st.nextToken();
-            arr[i][1] = st.nextToken();
+            age = Integer.parseInt(st.nextToken());
+            name = st.nextToken();
+
+            p[age].append(age).append(' ').append(name).append("\n");
         }
 
-        Arrays.sort(arr, (e1, e2) ->{
-            return Integer.parseInt(e1[0]) - Integer.parseInt(e2[0]);
-        });
-
-        for(int i = 0; i < N; i++){
-            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        for (StringBuilder sbarr : p) {
+            sb.append(sbarr);
         }
-
         System.out.println(sb);
     }
 }
