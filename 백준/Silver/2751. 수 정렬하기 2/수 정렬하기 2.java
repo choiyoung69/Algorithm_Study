@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -9,16 +10,17 @@ class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
+
+        boolean[] arrays = new boolean[2000001];
 
         for(int i = 0; i < N; i++){
-            arr[i] = Integer.parseInt(br.readLine());
+            arrays[Integer.parseInt(br.readLine()) +1000000] = true;
         }
 
-        Arrays.sort(arr);
-        for(int i = 0; i < N; i++){
-            sb.append(arr[i]).append("\n");
+        for(int i = 0; i < arrays.length; i++){
+            if(arrays[i])
+                sb.append(i - 1000000).append("\n");
         }
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 }
