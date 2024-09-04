@@ -11,30 +11,20 @@ class Main{
         StringBuilder sb = new StringBuilder();
         int N = Integer.parseInt(br.readLine());
 
-        int[] arrays = new int[N];
-        int[] count = new int[100000];
-        int[] result = new int[N];
-
-        int number = 0;
-        for(int i = 0; i < N; i++){
-            number = Integer.parseInt(br.readLine());
-            arrays[i] = number;
-            count[number]++;
-        }
-
-        for(int i = 1; i < count.length; i++){
-            count[i] += count[i - 1];
-        }
+        int[] count = new int[10001];
 
         for(int i = 0; i < N; i++){
-            int value = arrays[i];
-            count[value]--;
-            result[count[value]] = value;
+            count[Integer.parseInt(br.readLine())]++;
+        }
+        br.close();
+
+        for(int i = 1; i < 10001; i++){
+            while(count[i] > 0){
+                sb.append(i).append('\n');
+                count[i]--;
+            }
         }
 
-        for(int i = 0; i < N; i++){
-            sb.append(result[i]).append("\n");
-        }
         System.out.println(sb);
     }
 }
