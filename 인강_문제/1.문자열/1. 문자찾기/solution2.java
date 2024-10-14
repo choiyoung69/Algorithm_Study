@@ -8,9 +8,13 @@ public class Main {
 
         String upper_str = str.toUpperCase();
         char upper_t = Character.toUpperCase(t);
-        
-        for(int i = 0; i < upper_str.length(); i++){
-            if(upper_str.charAt(i) == upper_t) answer++;
+
+//        for(int i = 0; i < upper_str.length(); i++){
+//            if(upper_str.charAt(i) == upper_t) answer++;
+//        }
+
+        for (char k : upper_str.toCharArray()) {
+            if(k == upper_t) answer++;
         }
         return answer;
     }
