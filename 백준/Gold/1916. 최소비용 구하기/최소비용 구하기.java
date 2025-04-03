@@ -22,14 +22,14 @@ public class Main {
         PQ.offer(new Edge(start, 0));
         dis[start] = 0;
 
-        for(int i = 1; i <= N; i++) {
+        while(!PQ.isEmpty()) {
             Edge tmp = PQ.poll();
             int tmpVes = tmp.ves;
             int tmpCost = tmp.cost;
+            if(tmpCost > dis[tmpVes]) continue;
             if(tmpVes == end) {
                 return tmpCost;
             }
-            if(tmpCost > dis[tmpVes]) continue;
             for(Edge ob : graph.get(tmpVes)) {
                 if(dis[ob.ves] > ob.cost + tmpCost) {
                     dis[ob.ves] = ob.cost + tmpCost;
@@ -37,7 +37,7 @@ public class Main {
                 }
             }
         }
-        return dis[end];
+        return 0;
     }
 
     public static void main(String[] args) throws IOException {
