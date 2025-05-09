@@ -20,14 +20,9 @@ class Main {
         }
 
         for(int i = 4; i <= max; i++) {
-            for (int j = 3; j >= 1; j--) {
-                int sum = 0;
-                for(int k = 0; k < 3; k++) {
-                    if(k+1 == j) continue;
-                    sum = (sum + temp[i - j][k]) % 1000000009;
-                }
-                temp[i][j - 1] = sum;
-            }
+            temp[i][2] = (temp[i - 3][0] + temp[i - 3][1]) % 1000000009;
+            temp[i][1] = (temp[i - 2][0] + temp[i - 2][2]) % 1000000009;
+            temp[i][0] = (temp[i - 1][1] + temp[i - 1][2]) % 1000000009;
         }
 
         for(int i = 0; i < arr.length; i++){
