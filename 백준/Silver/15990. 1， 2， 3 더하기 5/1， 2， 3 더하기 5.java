@@ -26,7 +26,7 @@ class Main {
                     if(k+1 == j) continue;
                     sum = (sum + temp[i - j][k]) % 1000000009;
                 }
-                temp[i][j - 1] = sum % 1000000009;
+                temp[i][j - 1] = sum;
             }
         }
 
@@ -35,7 +35,7 @@ class Main {
             for(int j = 0; j < 3; j++){
                 sum = (sum + temp[arr[i]][j]) % 1000000009;
             }
-            System.out.println(sum % 1000000009);
+            System.out.println(sum);
         }
     }
 
