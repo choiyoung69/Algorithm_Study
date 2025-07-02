@@ -1,32 +1,26 @@
 #include<bits/stdc++.h>
 using namespace std;
+int tall[9];
 
 int main() {
-    int length[9];
     int temp;
     for(int i = 0; i < 9; i++){
         cin >> temp;
-        length[i] = temp;
+        tall[i] = temp;
     }
     
-    sort(length, length + 9);
-    
-    for(int i = 0; i < 3; i++){
-        for(int j = 1; j < 4; j++){
-            for(int k = 2; k < 5; k++){
-                for(int l = 3; l < 6; l++){
-                    for(int a = 4; a < 7; a++){
-                        for(int b = 5; b < 8; b++){
-                            for(int c = 6; c < 9; c++){
-                                if(length[i] + length[j] + length[k] + length[l] + length[a] + length[b] + length[c] == 100){
-                                    cout << length[i] << "\n" << length[j] << "\n"  << length[k] << "\n"  << length[l] << "\n" << length[a] << "\n" << length[b]  << "\n"  << length[c] << "\n";
-                                    return 0;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+    sort(tall, tall + 9);
+    int sum;
+    do{
+        sum = 0;
+        for(int i = 0; i < 7; i++){
+            sum += tall[i];
         }
-    }
+        if(sum == 100){
+            for(int i = 0; i < 7; i++){
+                cout << tall[i] << '\n';
+            }
+            break;
+        }
+    }while(next_permutation(tall, tall + 9));
 }
