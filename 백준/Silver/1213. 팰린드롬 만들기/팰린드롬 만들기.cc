@@ -1,37 +1,27 @@
 #include<bits/stdc++.h>
 using namespace std;
-map<char, int> mp;
-string temp, answer, middle = "", reverseStr;
+int cnt[200], flag;
+string s, ret;
+char mid;
 
-int main() {
-    cin >> temp;
-    for(int i = 0; i < temp.size(); i++){
-        mp[temp[i]]++;
-    }
-    
-    bool flag = false;
-    for(auto it : mp) {
-        if(temp.size() % 2 == 0) { //짝수라면
-            if(it.second % 2 == 1) {
-                cout << "I'm Sorry Hansoo";
-                exit(0);
+int main(){
+    cin >> s;
+    for(char ch : s) cnt[(int)ch]++;
+    for(int i = 'Z'; i >= 'A'; i--){
+        if(cnt[i]) {
+            if(cnt[i] & 1) {
+                mid = char(i);
+                flag++;
+                cnt[i]--;
             }
-            for(int i = 0; i < it.second/2; i++) answer += it.first;
-        }
-        else { //홀수 라인
-            if(it.second % 2 == 1 && flag) {
-                cout << "I'm Sorry Hansoo";
-                exit(0);                   
-            } 
-            else if(it.second % 2 == 1 && !flag){
-                flag = true;
-                middle = it.first;
+            if(flag == 2) break;
+            for(int j = 0; j < cnt[i]; j+=2){
+                ret = char(i) + ret;
+                ret += char(i);
             }
-            for(int i = 0; i < it.second / 2; i++) answer += it.first;
         }
     }
-    reverseStr = answer;
-    reverse(answer.begin(), answer.end());
-    reverseStr = reverseStr + middle + answer;
-    cout << reverseStr;
+    if(mid) ret.insert(ret.begin() + ret.size()/2, mid);
+    if(flag == 2) cout << "I'm Sorry Hansoo\n";
+    else cout << ret << "\n";
 }
