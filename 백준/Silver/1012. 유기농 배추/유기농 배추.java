@@ -16,7 +16,7 @@ class Point {
 
 class Main
 {
-    private static int T, N, M, K, count;
+    private static int T, N, M, K;
     private static int[][] a;
     private static int[][] visited;
     private static int dy[] = {-1, 0, 1, 0};
@@ -25,8 +25,6 @@ class Main
 
     public static void go(int y, int x) {
         visited[y][x] = 1;
-        count++;
-        if(count == K) return;
 
         for (int i = 0; i < 4; i++) {
             int ny = y + dy[i];
