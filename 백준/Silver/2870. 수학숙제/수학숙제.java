@@ -14,21 +14,20 @@ class Main
             String str = br.readLine();
             StringBuilder sb = new StringBuilder();
 
-            int j = 0;
-            for (j = 0; j < str.length(); j++) {
+            for (int j = 0; j < str.length(); j++) {
                 char ch = str.charAt(j);
                 if (Character.isDigit(ch)) {
                     sb.append(ch);
                 }
                 else if(sb.length() > 0) {
-                    getStringBuilder(sb, rnt);
+                    rnt.add(removeLeadingZero(sb.toString()));
                     sb = new StringBuilder();
                 }
             }
-            if(j == str.length() && sb.length() > 0) {
-                getStringBuilder(sb, rnt);
+
+            if(sb.length() > 0) {
+                rnt.add(removeLeadingZero(sb.toString()));
             }
-            sb = new StringBuilder();
         }
 
         Collections.sort(rnt, new Comparator<String>(){
@@ -46,18 +45,12 @@ class Main
         }
     }
 
-    private static void getStringBuilder(StringBuilder sb, List<String> rnt) {
-        String s = sb.toString();
-        StringBuilder temp_sb = new StringBuilder();
-        boolean flag = false;
-        for (int j = 0; j < s.length(); j++) {
-            char temp_ch = s.charAt(j);
-            if (temp_ch == '0' && !flag && j == s.length() - 1) {
-                sb.append('0');
-            } else if (temp_ch == '0' && !flag) continue;
-            flag = true;
-            temp_sb.append(s.charAt(j));
+    private static String removeLeadingZero(String s) {
+        int idx = 0;
+
+        while (idx < s.length() - 1 && s.charAt(idx) == '0') {
+            idx++;
         }
-        if(temp_sb.length() > 0) rnt.add(temp_sb.toString());
+        return s.substring(idx);
     }
 }
