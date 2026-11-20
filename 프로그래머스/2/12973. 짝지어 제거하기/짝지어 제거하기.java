@@ -3,28 +3,25 @@ import java.util.*;
 class Solution
 {
     public int solution(String s)
-    {   
-        Stack<Character> stack = new Stack<>();
+    {
+        int answer = -1;
+
+        Deque<Character> dq = new ArrayDeque<>();
         
-        for(int i = 0; i < s.length(); i++){
-            if(stack.empty()){
-                stack.push(s.charAt(i));
-            }
-            else{
-                if(stack.peek() == s.charAt(i)){
-                    stack.pop();
-                    continue;
-                }
-                else{
-                    stack.push(s.charAt(i));
-                }
+        for(char ch : s.toCharArray()) {
+            if(!dq.isEmpty() && dq.peek() == ch) {
+                dq.pop();
+            } else {
+                dq.push(ch);
             }
         }
-        if(!stack.empty()){
-            return 0;
+        
+        if(dq.isEmpty()) {
+            answer = 1;
+        } else {
+            answer = 0;
         }
-        else{
-            return 1;
-        }
+
+        return answer;
     }
 }
